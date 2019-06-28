@@ -1,12 +1,13 @@
 /**
  * ReentrantLock可以完全完成synchronized同样的功能
  * 
- * 公平锁，两个线程相间执行
+ * 公平锁，两个线程相间执行.
+ * 
+ * ReentrantLock 和Synchronized的区别经常被问到
  */
 
 package com.lisz.concur20.reentrantlock;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLock5 extends Thread {
