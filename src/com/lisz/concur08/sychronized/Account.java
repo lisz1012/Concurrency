@@ -3,6 +3,8 @@
  * 对业务读方法不加锁
  * 容易产生脏读问题（dirty read）
  * 读到了正在被改写的数据
+ * 解决脏读问题可以用CopyOnWrite，牺牲写性能，
+ * 增加读性能
  */
 package com.lisz.concur08.sychronized;
 

@@ -12,7 +12,7 @@
  * CountDownLatch不涉及锁定，当count值为0的时候
  * 当前线程继续运行。当不涉及同步，只涉及线程通信的时候，
  * 用synchronized + wait/notify就显得太重了，
- * 这是应该考虑CountDownLatch/semaphore
+ * 这是应该考虑CountDownLatch/semaphore/cyclicbarrier
  * latch的等待不需要锁定任何对象，两个线程都继续执行
  * 
  * 下面这个版本对MyContainer5优化了一下
@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public class MyContainer6 {
-	volatile List<Integer> list = new ArrayList<>();
+	volatile List<Integer> list = new ArrayList<>();//volatile只缓存数据，不缓存整个对象
 	
 	public void add(Integer i) {
 		list.add(i);
