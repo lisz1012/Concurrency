@@ -18,7 +18,7 @@ public class MyContainer1 <T>{
 	public synchronized void put(T t) {
 		while (list.size() == MAX) {//while会回头再判断一次，是防止其他线程抢先拿到锁add，造成当前线程拿到锁add之后size超过MAX的情况
 			try {
-				wait();//wait在99.9%情况下都跟while一起用 -- 《Effective Java》
+				wait();//wait在99.9%情况下都跟while一起用 -- 《Effective Java》。wait会释放锁，但先要有锁，所以wait/notify与synchronized配合使用
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
