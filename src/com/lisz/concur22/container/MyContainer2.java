@@ -2,7 +2,7 @@
  * 面试题：写一个固定容量的同步容器，拥有put，get和getCount方法
  * 能够支持2个生产者线程和10个消费者线程的阻塞调用
  * 面的很多，陷阱多
- * 用Condition来实现，可以精确地指定那些线程被叫醒，那些线程进入等待
+ * 用Condition来实现，可以精确地指定哪些线程被叫醒，哪些线程进入等待
  * Condition要跟Lock一起使用，之前要锁定: lock.lock()，用完了要
  * 释放锁lock.unlock();
  * 
@@ -32,11 +32,11 @@ public class MyContainer2 <T>{
 		try {
 			lock.lock(); // Condition要跟Lock一起使用
 			while (list.size() == MAX) {
-				producer.await();
+				producer.await(); // 执行到这一句话的线程都给我等着
 			}
 			list.add(t);
 			++count;
-			consumer.signalAll();
+			consumer.signalAll(); //所有在consumer.await();那里等着的线程，启动吧！
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -49,11 +49,11 @@ public class MyContainer2 <T>{
 		try {
 			lock.lock();
 			while (list.size() == 0) {
-				consumer.await();
+				consumer.await(); // 执行到这一句话的线程都给我等着
 			}
 			t = list.removeFirst();
 			--count;
-			producer.signalAll();
+			producer.signalAll(); //所有在producer.await();那里等着的线程，启动吧！
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {

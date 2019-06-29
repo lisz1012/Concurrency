@@ -16,7 +16,7 @@ public class MyContainer1 <T>{
 	private int count = 0;
 	
 	public synchronized void put(T t) {
-		while (list.size() == MAX) {//while会回头再判断一次，是防止其他线程抢先拿到锁add，造成当前线程拿到锁add之后size超过MAX的情况
+		while (list.size() == MAX) {//while会回头再判断一次，是防止其他线程抢先拿到锁add，造成当前线程拿到锁add之后size超过MAX的情况，有点像Singleton lazy的两次判断的方法
 			try {
 				wait();//wait在99.9%情况下都跟while一起用 -- 《Effective Java》。wait会释放锁，但先要有锁，所以wait/notify与synchronized配合使用
 			} catch (InterruptedException e) {
@@ -26,7 +26,7 @@ public class MyContainer1 <T>{
 		list.add(t);
 		++count;
 		notifyAll();//notify的话有可能刚刚加满，又叫醒了一个生产者而不是消费者，
-					//由于满了它立刻wait，而当前生产者得到锁之后又一看满了，也wait，整个程序执行不下去了
+					//由于满了它立刻wait，而当前生产者在它的下一个循环中得到锁之后又一看满了，也wait，整个程序执行不下去了
 					//永远使用notifyAll，而不要使用notify -- 《Effective Java》
 	}
 	
@@ -50,6 +50,7 @@ public class MyContainer1 <T>{
 	
 	public static void main(String[] args) {
 		MyContainer1<String> c = new MyContainer1<>();
+		// 负责调用put的是生产者，负责调用get的是消费者
 		for (int i = 0; i < 10; i++) {
 			new Thread(()->{
 				for (int j = 0; j < 5; j++) {
