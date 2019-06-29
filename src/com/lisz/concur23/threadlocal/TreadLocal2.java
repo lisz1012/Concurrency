@@ -46,7 +46,7 @@ package com.lisz.concur23.threadlocal;
 import java.util.concurrent.TimeUnit;
 
 public class TreadLocal2 {
-	volatile static ThreadLocal<Person> tl = new ThreadLocal<>();
+	private static ThreadLocal<Person> tl = new ThreadLocal<>();
 	
 	public static void main(String[] args) {
 		new Thread(() -> {
