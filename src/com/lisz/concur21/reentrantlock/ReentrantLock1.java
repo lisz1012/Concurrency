@@ -4,7 +4,7 @@
  * m2才执行这里是复习synchronized最原始的意义
  */
 
-package com.lisz.concur20.reentrantlock;
+package com.lisz.concur21.reentrantlock;
 
 import java.util.concurrent.TimeUnit;
 

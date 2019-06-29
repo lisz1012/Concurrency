@@ -6,7 +6,7 @@
  * synchronized手动上锁，自动释放
  */
 
-package com.lisz.concur20.reentrantlock;
+package com.lisz.concur21.reentrantlock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;

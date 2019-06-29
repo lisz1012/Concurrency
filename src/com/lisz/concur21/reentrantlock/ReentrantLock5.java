@@ -6,7 +6,7 @@
  * ReentrantLock 和Synchronized的区别经常被问到
  */
 
-package com.lisz.concur20.reentrantlock;
+package com.lisz.concur21.reentrantlock;
 
 import java.util.concurrent.locks.ReentrantLock;
 
