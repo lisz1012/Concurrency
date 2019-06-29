@@ -2,7 +2,7 @@
  * 面试题：写一个固定容量的同步容器，拥有put，get和getCount方法
  * 能够支持2个生产者线程和10个消费者线程的阻塞调用
  * 面的很多，陷阱多
- * 使用wait，notify/notifyAll来实现
+ * 本例中使用wait，notify/notifyAll来实现
  */
 
 package com.lisz.concur22.container;
