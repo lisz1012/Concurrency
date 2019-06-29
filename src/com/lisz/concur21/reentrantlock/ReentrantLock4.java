@@ -21,7 +21,7 @@ public class ReentrantLock4 {
 			try {
 				for (int i = 0; i < 10; i++) {
 					System.out.println("t1 start");
-					TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+					TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);//抱住锁不放，无限期执行
 					System.out.println("t1 end");
 				} 
 			} catch (InterruptedException e) {

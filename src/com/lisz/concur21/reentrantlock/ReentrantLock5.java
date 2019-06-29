@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLock5 extends Thread {
 	
-	private static ReentrantLock lock = new ReentrantLock(true);//是否是公平锁，看等待时间，先到先得，效率比较低
+	private static ReentrantLock lock = new ReentrantLock(true);//是否是公平锁，公平锁要看等待时间，先到先得，效率比较低
 	
 	@Override
 	public void run() {
