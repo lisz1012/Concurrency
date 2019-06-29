@@ -34,14 +34,19 @@ public class ReentrantLock3 {
 	 * 可以根据tryLock的返回值来判定是否锁定也可以指定tryLock
 	 * 的时间由于tryLock抛异常，所以要注意unlock的处理，必须放到finally中
 	 */
-	synchronized void m2() {
+	void m2() {
 		boolean locked = false;
 		/*locked = lock.tryLock();
 		if (locked) {
 			System.out.println("m2");
 		}*/
 		try {
-			locked = lock.tryLock(5, TimeUnit.SECONDS);//等锁等5秒，应该根据返回值判断要不要执行
+			locked = lock.tryLock(5, TimeUnit.SECONDS);//等锁等5秒，一般应该根据返回值判断要执行哪个分支
+			if (locked) {
+				System.out.println("Get lock");
+			} else {
+				System.out.println("Did not get the lock");
+			}
 			System.out.println("m2 ... " + locked);
 		} catch (Exception e) {
 			e.printStackTrace();
