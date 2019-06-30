@@ -3,16 +3,17 @@
  * BlockingQueue包括：LInkedBlockingQueue,ArrayBlockingQueue阻塞式的队列
  * 在阻塞式容器里面添加了put：如果满了，就会等待；take如果空了就会等待
  * 有了BlockingQueue就不用自己去实现同步阻塞式容器了。BlockingQueue用的很多
+ * 把下面的Queue换成Deque也一样效果
  */
 
 package com.lisz.concur26.concurcontainer;
 
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class T06_ArrayBlockingQueue {
-	private static BlockingDeque<String> queue = new LinkedBlockingDeque<>(10);//有界队列
+	private static BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);//有界队列
 	
 	public static void main(String[] args) throws InterruptedException {
 		for (int i = 0; i < 10; i++) {
