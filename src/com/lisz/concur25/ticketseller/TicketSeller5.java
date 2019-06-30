@@ -20,12 +20,22 @@
    特殊情况下将仅返回 CAS 是否成功，而不提取当前值。）CAS 有效地说明了
    “我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否则，不要更改该位置，
    只告诉我这个位置现在的值即可。”这其实和乐观锁的冲突检查+数据更新的原理是一样的。
+   https://blog.csdn.net/liangwenmail/article/details/80832580
+   
+   Java的CAS会使用现代处理器上提供的高效机器级别原子指令，这些原子指令以原子方式对内存
+   执行读-改-写操作，这是在多处理器中实现同步的关键（从本质上来说，能够支持原子性读-改-写
+   指令的计算机器，是顺序计算图灵机的异步等价机器，因此任何现代的多处理器都会去支持某种能
+   对内存执行原子性读-改-写操作的原子指令）
+   
    
    这里再强调一下，乐观锁是一种思想。CAS是这种思想的一种实现方式。
    在JDK1.5 中新增java.util.concurrent(J.U.C)就是建立在CAS之上的。相对于对于
    synchronized这种阻塞算法，CAS是非阻塞算法的一种常见实现。所以J.U.C在性能上有了很大的提升。
    我们以java.util.concurrent中的AtomicInteger为例，看一下在不使用锁的情况下是如何保证线
    程安全的。主要理解getAndIncrement方法，该方法的作用相当于 ++i 操作
+   
+   CAS也有存在潜在的问题，比如ABA问题（需要加版本号解决）
+   https://blog.csdn.net/liangwenmail/article/details/80832580
  */
 
 package com.lisz.concur25.ticketseller;
@@ -34,7 +44,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class TicketSeller5 {
-	private static Queue<String> tickets = new ConcurrentLinkedQueue<>();
+	private static Queue<String> tickets = new ConcurrentLinkedQueue<>();//这个容器选择得好！
 	
 	static {
 		for (int i = 0; i < 10000; i++) {
