@@ -1,6 +1,7 @@
 /**
  * ScheduledThreadPool跟DelayQueue用法差不多.scheduleAtFixedRate方法有4个参数
- * Runnnable，一开始的延迟时间，周期，时间单位TimieUnit
+ * Runnnable，一开始的延迟时间，周期，时间单位TimieUnit。线程池里的线程是可以复用的。
+ * ScheduledThreadPool底层的生产者消费者队列用的是DelayedWorkQueue
  */
 
 package com.lisz.concur27.threadpool;

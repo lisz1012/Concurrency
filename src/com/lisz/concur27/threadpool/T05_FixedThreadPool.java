@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class T05_ThreadPool {
+public class T05_FixedThreadPool {
 
 	public static void main(String[] args) throws InterruptedException {
 		ExecutorService service = Executors.newFixedThreadPool(5); //个数位5的线程池，需要的时候才会启动线程，execute和submit方法
