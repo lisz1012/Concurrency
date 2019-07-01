@@ -1,6 +1,6 @@
 /**
  * Queue在高并发的时候可以使用两种队列：1.ConcurrentQueue 2. BlockingQueue
- * BlockingQueue包括：LInkedBlockingQueue,ArrayBlockingQueue阻塞式的队列
+ * BlockingQueue包括：LinkedBlockingQueue,ArrayBlockingQueue阻塞式的队列
  * 在阻塞式容器里面添加了put：如果满了，就会等待；take如果空了就会等待
  * 有了BlockingQueue就不用自己去实现同步阻塞式容器了。BlockingQueue用的很多
  */

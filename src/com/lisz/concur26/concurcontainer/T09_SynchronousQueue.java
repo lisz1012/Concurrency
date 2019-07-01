@@ -21,7 +21,7 @@ public class T09_SynchronousQueue {
 			}
 		}).start();
 		queue.put("aaa");//put不报错，阻塞，等着消费者来消费，内部调用的就是transfer方法
-		//queue.add("aaa");//此时add就不行，报错，容量为0 Quue full
+		//queue.add("aaa");//此时add就不行，报错，容量为0 不能往里加，Queue full
 		System.out.println(queue.size());
 	}
 

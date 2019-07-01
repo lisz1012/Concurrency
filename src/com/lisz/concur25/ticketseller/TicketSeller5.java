@@ -45,7 +45,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class TicketSeller5 {
 	private static Queue<String> tickets = new ConcurrentLinkedQueue<>();//这个容器选择得好！
-	
+																		
 	static {
 		for (int i = 0; i < 10000; i++) {
 			tickets.offer("Ticketnumber：" + i);
@@ -57,7 +57,7 @@ public class TicketSeller5 {
 			new Thread(() ->{
 				while (true) {
 					String s = tickets.poll();//底层是CAS（Compare and Set）不是加锁的实现
-					if (s == null) break;
+					if (s == null) break;	//虽然判断跟操作还是分离的，但是判断之后不做操作
 					System.out.println("卖出了：" + s);
 				}
 			}).start();
