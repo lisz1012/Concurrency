@@ -1,6 +1,6 @@
 /**
  * 线程池初步：Executor接口，java线程池中最顶层的借口，里面就一个execute方法，
- * 自己去写实现怎么执行。
+ * 自己去写实现怎么执行。当然我们一般不会直接用顶层接口的
  */
 
 package com.lisz.concur27.threadpool;
