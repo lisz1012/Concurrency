@@ -12,6 +12,7 @@
 11. 线程池：FixedThreadPool，CachedThreadPool，SingleThreadExecutor，ScheduledThreadPool，
            WorkStealingPool，ForkJoinPool以及底层的ThreadPoolExecutor。Executors工厂/工具类，
            Runnable和Callable接口，Future和FutureTask。Parallel的编程思想
+12. 常见多线程相关面试题
 
 新版笔记和详细解释见各个例子程序及其注释，以下是2018的笔记
 
