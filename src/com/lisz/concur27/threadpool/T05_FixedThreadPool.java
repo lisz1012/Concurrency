@@ -46,19 +46,19 @@ public class T05_FixedThreadPool {
 		
 		// 已经terminate之后就不能再execute了，会报java.util.concurrent.RejectedExecutionException
 	}
-/*
- * java.util.concurrent.ThreadPoolExecutor@31b7dea0[Running, pool size = 5, active threads = 5, queued tasks = 1, completed tasks = 0] //6个任务，所以5个线程全起来了，还有一个等着的
+/* 输出结果分析：
+ * java.util.concurrent.ThreadPoolExecutor@31b7dea0[Running, pool size = 5, active threads = 5, queued tasks = 1, completed tasks = 0] //6个任务，所以5个线程全起来了，还有一个任务在等待
 false
 true
-java.util.concurrent.ThreadPoolExecutor@31b7dea0[Shutting down, pool size = 5, active threads = 5, queued tasks = 1, completed tasks = 0]
+java.util.concurrent.ThreadPoolExecutor@31b7dea0[Shutting down, pool size = 5, active threads = 5, queued tasks = 1, completed tasks = 0]// shutdown()被调用，状态改变
 pool-1-thread-4
 pool-1-thread-3
 pool-1-thread-1
 pool-1-thread-5
 pool-1-thread-2
-pool-1-thread-4
+pool-1-thread-4 // 线程4处理了两个任务
 true
 true
-java.util.concurrent.ThreadPoolExecutor@31b7dea0[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 6]
+java.util.concurrent.ThreadPoolExecutor@31b7dea0[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 6] // 任务全部做完，线程池状态变为Terminated
  */
 }

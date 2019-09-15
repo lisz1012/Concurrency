@@ -9,21 +9,24 @@ public class Test {
 	public void m1() {
 		synchronized (a) {
 			try {
-				TimeUnit.SECONDS.sleep(2000);
+				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			m2();
 			System.out.println("a complete");
 		}
+		
 	}
 	
 	public void m2() {
 		synchronized (b) {
 			try {
-				TimeUnit.SECONDS.sleep(2000);
+				TimeUnit.SECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			m1();
 			System.out.println("b complete");
 		}
 	}
@@ -32,11 +35,9 @@ public class Test {
 		Test t = new Test();
 		new Thread(()->{
 			t.m1();
-			t.m2();
 		}).start();
 		new Thread(()->{
 			t.m2();
-			t.m1();
 		}).start();
 	}
 	// 无任何输出，两个线程都在等待对方释放锁

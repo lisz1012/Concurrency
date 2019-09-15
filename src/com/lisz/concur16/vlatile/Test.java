@@ -2,7 +2,7 @@
  * AtomicXXX原子类，内部不是用synchronized实现的，而是用系统相当底层的原理实现的，
  * 所以它比synchronized效率要高好多，但是某网上课程的吕老师说不建议用，效率太低。
  * 
- * AtomicXXX原子类底层用到了CAS compare-and-swap
+ * AtomicXXX原子类底层用到了CAS compare-and-set
  * 比较并设置，这里利用Unsafe类的JNI方法实现，使用CAS指令，可以保证读-改-写是一个原子操作。
  * 简单的来说，CAS有3个操作数，内存值V，旧的预期值A，要修改的新值B。当且仅当预期值A和内存值V相同时，
  * 将内存值V修改为B，否则返回V。这是一种乐观锁的思路，它相信在它修改之前，没有其它线程去修改它；
